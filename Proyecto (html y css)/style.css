@@ -7,15 +7,37 @@ body{
 
 .navbar {
     display: flex;
+    background-color: yellow;
     align-items: center;
-    justify-content: space-between
+    justify-content: space-between;
+    padding-right: 20px;
+    
 }
 
 nav ul li {
     display: inline-block;
     list-style-type: none;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px;
+    transition: 0.8s;
+    
+    
 }
 
 nav ul li a {
     text-decoration: none;
+    font-size: large;
+    color: black;
+    transition: 0.8s;
+}
+
+nav ul li:hover {
+    background-color: rgb(14, 13, 1);
+    border-radius: 20px;
+}
+
+nav ul li a:hover {
+    color: rgb(208, 181, 113);
+    font-weight: bold;
 }
