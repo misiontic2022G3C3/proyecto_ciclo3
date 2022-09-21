@@ -1,14 +1,20 @@
 body{
+    height: 100vh;
     margin: 0%;
     padding: 0%;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    
+    background-image: linear-gradient(rgba(4, 74, 78, 0.6), rgba(0,0,0,0.6)),url("images/fondo.jpg");
+    background-size: cover;
+    background-position: center;
 }
 
 .navbar {
+    
+    width: 100%;
+    background-color: rgba(6, 68, 93, 0.44);
+    
     display: flex;
-    background-color: yellow;
-    align-items: center;
+    
     justify-content: space-between;
     padding-right: 20px;
     
@@ -28,16 +34,61 @@ nav ul li {
 nav ul li a {
     text-decoration: none;
     font-size: large;
-    color: black;
+    color: bisque;
+    
     transition: 0.8s;
 }
 
 nav ul li:hover {
-    background-color: rgb(14, 13, 1);
+    background-color: rgb(167, 222, 246);
     border-radius: 20px;
 }
 
 nav ul li a:hover {
-    color: rgb(208, 181, 113);
+    color: rgb(136, 137, 137);
     font-weight: bold;
+}
+
+.logo{
+    padding-top: 15px;
+    padding-left: 10px;
+}
+
+.parrafo{
+    margin: 10px 80px 0 80px;
+    justify-content: center;
+}
+
+p{
+  font-size: 30px;
+  text-align: center;
+  color: bisque;
+
+}
+
+footer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: rgba(6, 68, 93, 0.44);
+}
+
+
+.registrarse {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0 20px 0;
+}
+button{
+    margin: auto;
+    width: 30%;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgb(167, 222, 246);
+    color: beige;
+    border: none;
+    font-size: medium;
+    font-weight: bold;
+    
+    
 }
