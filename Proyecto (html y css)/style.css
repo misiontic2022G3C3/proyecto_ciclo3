@@ -95,7 +95,7 @@ button{
     width: 300px;
     padding: 10px;
     border-radius: 10px;
-    background-color: rgb(45, 81, 117);
+    background-color: #042331;
     color: beige;
     border: none;
     font-size: medium;
@@ -105,7 +105,7 @@ button{
 }
 
 button:hover{
-    background-color: rgb(15, 43, 71);
+    background-color: rgb(25, 67, 108);
     cursor: pointer;
 }
 
@@ -136,7 +136,7 @@ input[type="password"]{
     width: 30%;
     padding: 10px;
     border-radius: 10px;
-    background-color: rgb(45, 81, 117);
+    background-color: #042331;
     color: beige;
     border: none;
     font-size: medium;
@@ -154,7 +154,7 @@ input[type="password"]{
     width: 30%;
     padding: 10px;
     border-radius: 10px;
-    background-color: rgb(45, 81, 117);
+    background-color: #042331;
     color: beige;
     border: none;
     font-size: medium;
@@ -175,3 +175,13 @@ input[type="password"]{
     color: bisque;
 
 }
+
+/*CSS newuser */
+.body-newuser {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
