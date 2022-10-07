@@ -4,7 +4,8 @@
  */
 package com.app.web.repositorio;
 
-import com.app.web.entidad.Clinicas;
+import com.app.web.entidad.Pacientes;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -13,10 +14,10 @@ import org.springframework.stereotype.Repository;
  *
  * @author Ferney
  */
-//JpaRepository<class,type @ID>
 @Repository
-public interface ClinicaRepositorio extends JpaRepository<Clinicas, Long>{
+public interface PacienteRepositorio extends JpaRepository<Pacientes, Long>{
     
-    //@Query(value ="SELECT * FROM clinicas u WHERE (u.usernamr = ?1)", nativeQuery = true)
-    public Clinicas findByUsername(String username);
+    @Query(value ="SELECT * FROM pacientes u WHERE (u.nombre LIKE %?1% OR u.apellido LIKE %?1%)", nativeQuery = true)
+	public List<Pacientes> findAll(String palabraClave);
+
 }

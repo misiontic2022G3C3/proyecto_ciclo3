@@ -1,0 +1,176 @@
+<!--xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+    xmlns="http://www.w3.org/1999/xhtml"-->
+<html 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+    >
+<!DOCTYPE html >
+
+    <head>
+        <meta charset="UTF-8">
+        <!-- CSS only -->
+       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+            crossorigin="anonymous">
+
+        <title>Registro de pacientes</title>
+    </head>
+    <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+	        <li class="nav-item">
+	          <a class="nav-link active" aria-current="page" th:href="@{/home}">Inicio</a>
+	        </li>
+	      </ul>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+	        <li class="nav-item">
+	          <a class="nav-link active" aria-current="page" th:href="@{/pacientes}">Lista Pacientes</a>
+	        </li>
+	      </ul>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+	        <li class="nav-item">
+	          <a class="nav-link active" aria-current="page" th:href="@{/pacientes/historias}">Lista Historias</a>
+	        </li>
+	      </ul>
+                <ul class="nav navbar-nav">
+                    <li sec:authorize="isAuthenticated()"><a class="navbar-brand" th:href="@{/logout}">Cerrar
+                            sesión</a></li>
+                </ul>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+        </nav>
+        
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<div th:if=${param.exito}>
+					<div class="alert alert-info">Se ha registrado exitosamente al paciente</div>
+				</div>
+				<h1>Registrar Paciente</h1>
+				<form th:action="@{/pacientes/registroPaciente}" method="post" th:object="${paciente}">
+					<div class="form-group">
+						<label class="control-label" for="documento">documento: </label> <input
+							id="documento" type="number" class="form-control" 
+                                                        th:field="*{documento}"
+                                                        pattern="[0-9]"
+							autocomplete="off"
+                                                        required autofocus="autofocus">
+					</div>
+
+					<div class="form-group">
+						<label class="control-label" for="nombre">Nombres: </label> 
+                                                <input  id="nombre" type="text" minlength="1" maxlength="80" 
+                                                        placeholder="Digite el nombre del paciente"
+                                                        class="form-control" th:field="*{nombre}"
+							autocomplete="off"
+                                                        required autofocus="autofocus">
+					</div>
+                                    
+					<div class="form-group">
+						<label class="control-label" for="apellido">Apellidos: </label> 
+                                                <input  id="apellido" type="text" minlength="1" maxlength="80" 
+                                                        placeholder="Digite el apellido del paciente"
+                                                        class="form-control" th:field="*{apellido}"
+							autocomplete="off"
+                                                        required autofocus="autofocus">
+					</div>
+                                    
+                                    	<div class="form-group">
+						<label class="control-label" for="fechaNacimiento">Fecha de Nacimiento: </label> 
+                                                <input  id="fechaNacimiento" type="date" 
+                                                        class="form-control" th:field="*{fechaNacimiento}"
+							autocomplete="off"
+                                                        required autofocus="autofocus">
+					</div>
+                                    
+                                    	<div class="form-group">
+						<label class="control-label" for="telefono">telefono: </label> <input
+							id="telefono" type="number" class="form-control" 
+                                                        th:field="*{telefono}"
+                                                        pattern="[0-9]"
+							autocomplete="off"
+                                                        required autofocus="autofocus">
+					</div>
+                                 
+					<div class="form-group">
+						<label class="control-label" for="email">Email : </label> 
+                                                <input	id="email" type="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" 
+                                                        title="Ejemplo: usuario@dominio.co"
+                                                        placeholder="Digite el email"
+                                                        maxlength="80" class="form-control" th:field="*{email}"
+							autocomplete="off"
+                                                        required autofocus="autofocus">
+					</div>
+
+					<div class="form-group">
+						<label class="control-label" for="tipoSangre">Tipo de Sangre : </label> 
+                                                <div class="custom-control custom-radio custom-control-inline">
+                                                    <input type="radio" id="A+" name="A+" value="A+" th:field="*{tipoSangre}">
+                                                        <label for="A+">A+</label><br>
+                                                            </div>
+                                                <div class="custom-control custom-radio custom-control-inline">
+                                                    <input type="radio" id="A-" name="A-" value="A-" th:field="*{tipoSangre}">
+                                                        <label for="A-">A-</label><br>
+                                                            </div> 
+                                                <div class="custom-control custom-radio custom-control-inline">
+                                                    <input type="radio" id="B+" name="B+" value="B+" th:field="*{tipoSangre}">
+                                                        <label for="B+">B+</label><br>
+                                                            </div>
+                                                <div class="custom-control custom-radio custom-control-inline">
+                                                    <input type="radio" id="B-" name="B-" value="B-" th:field="*{tipoSangre}">
+                                                        <label for="B-">B-</label><br>
+                                                            </div> 
+                                                <div class="custom-control custom-radio custom-control-inline">
+                                                    <input type="radio" id="O+" name="O+" value="O+" th:field="*{tipoSangre}">
+                                                        <label for="O+">O+</label><br>
+                                                            </div> 
+                                                <div class="custom-control custom-radio custom-control-inline">
+                                                    <input type="radio" id="O-" name="O-" value="O-" th:field="*{tipoSangre}">
+                                                        <label for="O-">O-</label><br>
+                                                            </div> 
+                                                <div class="custom-control custom-radio custom-control-inline">
+                                                    <input type="radio" id="AB+" name="AB+" value="AB+" th:field="*{tipoSangre}">
+                                                        <label for="AB+">AB+</label><br>
+                                                             </div>
+                                                            <div class="custom-control custom-radio custom-control-inline">
+                                                    <input type="radio" id="AB-" name="AB-" value="AB-" th:field="*{tipoSangre}">
+                                                        <label for="AB-">AB-</label><br>  
+                                                             </div>
+                       
+					</div>
+                                    
+					<div class="form-group">
+						<label class="control-label" for="nombreAcudiente">Nombre Acudiente: </label> 
+                                                <input  id="nombreAcudiente" type="text" minlength="1" maxlength="80" 
+                                                        placeholder="Digite el nombre del acudiente"
+                                                        class="form-control" th:field="*{nombreAcudiente}"
+							autocomplete="off"
+                                                        required autofocus="autofocus">
+					</div>
+                                    
+                                    	<div class="form-group">
+						<label class="control-label" for="telefonoAcudiente">telefono Acudiente: </label> <input
+							id="telefonoAcudiente" type="number" class="form-control" 
+                                                        th:field="*{telefonoAcudiente}"
+                                                        pattern="[0-9]"
+							autocomplete="off"
+                                                        required autofocus="autofocus">
+					</div>
+
+					<div class="form-group">
+						<button type="submit" class="btn btn-success">Registrar</button>
+					</div>
+				</form>
+
+			</div>
+		</div>
+	</div>
+
+    </body>
+</html>

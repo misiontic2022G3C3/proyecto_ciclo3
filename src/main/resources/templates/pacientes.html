@@ -1,0 +1,90 @@
+<!--xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+    xmlns="http://www.w3.org/1999/xhtml"-->
+<html 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    >
+<!DOCTYPE html >
+
+    <head>
+        <meta charset="UTF-8">
+        <!-- CSS only -->
+       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+            crossorigin="anonymous">
+
+        <title>Lista de Pacientes</title>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+	        <li class="nav-item">
+	          <a class="nav-link active" aria-current="page" th:href="@{/home}">Inicio</a>
+	        </li>
+	      </ul>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+	        <li class="nav-item">
+	          <a class="nav-link active" aria-current="page" th:href="@{/pacientes}">Lista Pacientes</a>
+	        </li>
+	      </ul>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+	        <li class="nav-item">
+	          <a class="nav-link active" aria-current="page" th:href="@{/pacientes/historias}">Lista Historias</a>
+	        </li>
+	      </ul>
+                <ul class="nav navbar-nav">
+                    <li sec:authorize="isAuthenticated()"><a class="navbar-brand" th:href="@{/logout}">Cerrar
+                            sesión</a></li>
+                </ul>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+        </nav>
+
+	<br>
+	<br>
+        
+        <div class="container">
+
+		<div class="row">
+			<h2>Datos de pacientes</h2>
+		</div>
+
+		<div class="row">
+		<div class="col-lg-3">
+		<a th:href="@{/pacientes/registroPaciente}" class="btn btn-primary">Agregar Nuevo paciente</a>
+		</div>
+		</div>
+		<br>
+            
+		<table class="table table.bordered">
+			<thead class="table-dark">
+				<th>Nombre</th>
+				<th>Apellido</th>
+				<th>Documento</th>
+				<th>Acciones</th>
+			</thead>
+			<tbody>
+				<tr th:each="pacientes:${pacientes}">
+					<td th:text="${pacientes.nombre}">Nombre</td>
+					<td th:text="${pacientes.apellido}">Apellido</td>
+					<td th:text="${pacientes.documento}">Documento</td>
+					<td>
+                                        <a th:href="@{/pacientes/consultar/{id}(id=${pacientes.id})}" class="btn btn-info">Consultar</a>
+					<a th:href="@{/pacientes/editar/{id}(id=${pacientes.id})}" class="btn btn-info">Editar</a>
+					<a th:href="@{/pacientes/{id}(id=${pacientes.id})}" class="btn btn-danger">Eliminar</a>
+                                        </td>
+				</tr>
+			</tbody>
+		</table>
+
+
+            
+	</div>
+
+    </body>
+</html>

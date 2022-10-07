@@ -1,0 +1,134 @@
+<!DOCTYPE html >
+<html xmlns:th="http//www.thymeleaf.org">
+    <head>
+	    <meta charset="UTF-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <link rel="stylesheet" href="../static/css/style4.css" th:href="@{css/style4.css}">
+	    <script src="https://kit.fontawesome.com/20fddce382.js" crossorigin="anonymous"></script>
+	    <title>Registro historia</title>
+    </head>
+	<body>
+    
+    <div class="grid">
+    	<div class="column1">
+    					<input type="checkbox" id="check">
+					    <label for="check">
+					        <i class="fas fa-bars" id="btn"></i>
+					        <i class="fas fa-times" id="cancel"></i>
+					    </label>
+					    <div class="sidebar">
+					       <header>Menu</header>
+					       <ul class="main-menu">
+					            <li><a href=""><i class="fa-solid fa-user-group"></i>Pacientes
+					            <i class="fa fa-chevron-down"></i></a>
+					            	<ul>
+					            		<li class="sub-menu-est" ><a th:href="@{/registroPaciente}">Nuevo</a></li>
+					            		<li class="sub-menu-est "><a th:href="@{/pacientes}">Lista Pacientes</a></li>
+					            		<li class="sub-menu-est selected"><a th:href="@{/registroHistoria}">Registrar historia</a></li>
+					            		<li class="sub-menu-est"><a th:href="@{/historias}">Historias</a></li>
+					            	</ul>
+					            </li>
+					            <li><a href=""><i class="fa-solid fa-building"></i>Institución
+					            <i class="fa fa-chevron-down"></i></a>
+					            	<ul class="hide-menu">
+					            		<li class="sub-menu"><a th:href="@{/infoClinica}">Información</a></li>
+					            		<li class="sub-menu"><a>Eliminar cuenta</a></li>
+					            	</ul>
+					            </li>
+					       </ul> 
+					        <div sec:authorize="isAuthenticated()">
+					        	<button class="logout" type="button" th:href="@{/logout}" onclick="window.location.href='logout'">Cerrar sesión</button>
+                			</div>
+						</div>
+			
+					   
+    	</div> 
+       <div class="column21"> 
+		
+			
+				<div class="col-md-6 col-md-offset-3">
+					<div th:if=${param.exito}>
+						<div class="alert alert-info">Se ha agregado exitosamente la historia</div>
+					</div>
+					<h1 class="titulo">Agregar Historia</h1>
+					<form th:action="@{/registroHistoria}" method="post" th:object="${historia}">
+					        <div class="form-group">
+							<label class="control-label" for="fecha_consulta">Fecha de Consulta: </label> 
+	                                                <input  id="fecha_consulta" type="date" 
+	                                                        class="form-control" th:field="*{fecha_consulta}"
+								autocomplete="off"
+	                                                        required autofocus="autofocus">
+						</div>	
+	                                    
+	                                    <div class="form-group">
+							<label class="control-label" for="documento_paciente">documento del paciente: </label> <input
+								id="documento_paciente" type="number" class="form-control" 
+	                                                        pattern="[0-9]"
+	                                                        th:field="*{documento_paciente}"
+								autocomplete="off"
+	                                                        required autofocus="autofocus">
+						</div>
+	
+	                                    <div class="form-group">
+							<label class="control-label" for="especialidad">especialidad : </label> 
+	                                                <div class="custom-control custom-radio custom-control-inline">
+	                                                    <input type="radio" id="medicina_general" name="medicina_general" value="medicina_general" 
+	                                                           th:field="*{especialidad}">
+	                                                        <label for="medicina_general">medicina general</label><br>
+	                                                            </div>
+	                                                <div class="custom-control custom-radio custom-control-inline">
+	                                                    <input type="radio" id="odontologia" name="odontologia" value="odontologia" 
+	                                                           th:field="*{especialidad}">
+	                                                        <label for="odontologia">odontología</label><br>
+	                                                            </div> 
+	                                                <div class="custom-control custom-radio custom-control-inline">
+	                                                    <input type="radio" id="psicologia" name="psicologia" value="psicologia" 
+	                                                           th:field="*{especialidad}">
+	                                                        <label for="psicologia">psicología</label><br>
+	                                                            </div>
+	                                                <div class="custom-control custom-radio custom-control-inline">
+	                                                    <input type="radio" id="optometria" name="optometria" value="optometria" th:field="*{especialidad}">
+	                                                        <label for="optometria">optometría</label><br>
+	                                                            </div> 
+	                                                <div class="custom-control custom-radio custom-control-inline">
+	                                                    <input type="radio" id="pediatria" name="pediatria" value="pediatria" th:field="*{especialidad}">
+	                                                        <label for="pediatria">pediatría</label><br>
+	                                                            </div> 
+	                                                <div class="custom-control custom-radio custom-control-inline">
+	                                                    <input type="radio" id="Oncologia" name="Oncologia" value="Oncologia" th:field="*{especialidad}">
+	                                                        <label for="Oncologia">oncología</label><br>
+	                                                            </div> 
+	               
+						</div>
+	                                    
+	                                    
+	                                        <div class="form-group">
+							<label class="control-label" for="temperatura">Temperatura: </label> <input
+								id="temperatura" type="number" class="form-control" 
+	                                                        th:field="*{temperatura}"
+	                                                        step="0.01"
+								autocomplete="off"
+	                                                        required autofocus="autofocus">
+						</div>
+	                                        <div class="form-group">
+							<label class="control-label" for="diagnostico">diagnóstico: </label> 
+	                                                <input  id="diagnostico" type="text" minlength="1" maxlength="500" 
+	                                                        placeholder="Digite el diagnostico"
+	                                                        class="form-control1" th:field="*{diagnostico}"
+								autocomplete="off"
+	                                                        required autofocus="autofocus">
+						</div>
+						<div class="form-group">
+							<button type="submit" class="btn btn-success">Agregar</button>
+						</div>
+					</form>
+	
+				
+			
+		</div>
+		</div>
+	</div>
+
+    </body>
+</html>

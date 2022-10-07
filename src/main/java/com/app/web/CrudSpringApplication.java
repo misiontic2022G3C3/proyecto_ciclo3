@@ -15,12 +15,12 @@ public class CrudSpringApplication implements CommandLineRunner{
     }
         
     @Autowired
-    private ClinicaRepositorio repositorio;
+    private ClinicaRepositorio crepositorio;
 
     @Override
     public void run(String... args) throws Exception {
         
-        Clinicas clinica1 = new Clinicas(800106759,"Clínica Maria Paz","gerencia@mariapaz.com",
+        /*Clinicas clinica1 = new Clinicas(800106759,"Clínica Maria Paz","gerencia@mariapaz.com",
                 "Cll 5B # 7H - 29", "mariapaz", "Mp1234");
 	repositorio.save(clinica1);
 		
@@ -29,9 +29,9 @@ public class CrudSpringApplication implements CommandLineRunner{
 	repositorio.save(clinica2);
 		
 	Clinicas clinica3 = new Clinicas(400305672,"Universitario San Juan","registro@usanjuan.com",
-                "Cra 5 # 36 - 22", "sanjuan", "Contraseña");
+                "Cra 5 # 36 - 22", "sanjuan", "Contraseña3");
 	repositorio.save(clinica3);
-        
+        */
 
         
     }
